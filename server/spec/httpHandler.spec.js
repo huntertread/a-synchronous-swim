@@ -1,11 +1,10 @@
-
+const messages = require('../js/messageQueue')
 const fs = require('fs');
 const path = require('path');
 const expect = require('chai').expect;
 const server = require('./mockServer');
-
 const httpHandler = require('../js/httpHandler');
-
+httpHandler.initialize(messages)
 
 
 describe('server responses', () => {
@@ -22,7 +21,16 @@ describe('server responses', () => {
   });
 
   it('should respond to a GET request for a swim command', (done) => {
-    // write your test here
+    let {req, res} = server.mock('/', 'GET');
+    var strokeHolder = ['up','down','left','right'];
+    var randomStroke = Math.floor(Math.random() * strokeHolder.length);
+    var actualRandom = strokeHolder[randomStroke];
+    messages.enqueue(actualRandom);
+
+    httpHandler.router(req, res);
+    expect(res._responseCode).to.equal(200);
+    expect(res._ended).to.equal(true);
+    expect(res._data.toString()).to.be.empty;
     done();
   });
 

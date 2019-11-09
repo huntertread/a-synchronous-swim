@@ -1,10 +1,24 @@
-(function() {
 
+(function() {
   const serverUrl = 'http://127.0.0.1:3000';
 
   //
   // TODO: build the swim command fetcher here
   //
+  const swimCommandFetcher = function () {
+    $.get({
+      url: serverUrl,  // url
+      success: function (data) {  // success callback
+        console.log('testing success');
+        SwimTeam.move(data);
+      },
+      complete: function () {
+        console.log('success');
+        setInterval(swimCommandFetcher, 2500);
+      }
+    });
+  }
+  swimCommandFetcher();
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -17,7 +31,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
