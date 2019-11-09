@@ -5,6 +5,24 @@
   //
   // TODO: build the swim command fetcher here
   //
+
+  /* --- RANDOM COMMAND --- */
+  // const swimCommandFetcher = function () {
+  //   $.get({
+  //     url: serverUrl,  // url
+  //     success: function (data) {  // success callback
+  //       console.log('testing success');
+  //       SwimTeam.move(data);
+  //     },
+  //     complete: function () {
+  //       console.log('success');
+  //       setInterval(swimCommandFetcher, 2500);
+  //     }
+  //   });
+  // }
+  // swimCommandFetcher();
+
+  /* --- USER INPUT --- */
   const swimCommandFetcher = function () {
     $.get({
       url: serverUrl,  // url
@@ -14,11 +32,11 @@
       },
       complete: function () {
         console.log('success');
-        setInterval(swimCommandFetcher, 2500);
+        setInterval(swimCommandFetcher, 2900);
       }
     });
   }
-  swimCommandFetcher();
+  // swimCommandFetcher();
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
