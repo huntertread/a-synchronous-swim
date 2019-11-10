@@ -28,15 +28,17 @@
       url: serverUrl,  // url
       success: function (data) {  // success callback
         console.log('testing success');
+        console.log(data);
         SwimTeam.move(data);
       },
       complete: function () {
         console.log('success');
-        setInterval(swimCommandFetcher, 2900);
+        // setTimeout(swimCommandFetcher, 10);
       }
     });
   }
-  // swimCommandFetcher();
+  setTimeout(swimCommandFetcher, 0);
+  // setInterval(swimCommandFetcher, 500);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -49,13 +51,14 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl,
+      url: serverUrl + '/background.jpg',
       cache: false,
       contentType: false,
       processData: false,
       success: () => {
+        console.log('image upload succes');
         // reload the page
-        window.location = window.location.href;
+        // window.location = window.location.href;
       }
     });
   };
